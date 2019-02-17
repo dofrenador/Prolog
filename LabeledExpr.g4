@@ -2,14 +2,17 @@ grammar LabeledExpr; // rename to distinguish from Expr.g4
 
 prog:   stat+ ;
 
-
 stat:   expr NEWLINE                # PrintExpr
     |   ID '=' expr NEWLINE         # Assign
     |   ID '+=' expr NEWLINE        # AssignPlus
     |   ID '-=' expr NEWLINE        # AssignMinus
     |   ID '*=' expr NEWLINE        # AssignMultiply
     |   ID '/=' expr NEWLINE        # AssignDivide    
+    |   loop NEWLINE                # whileLoop
     |   NEWLINE                     # Blank
+    ;
+
+loop:   'while' '('expr')' NEWLINE? '{'stat*'}'   #while
     ;
 
 expr:   expr op='^'  expr          # Pow

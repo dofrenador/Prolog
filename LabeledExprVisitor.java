@@ -58,12 +58,26 @@ public interface LabeledExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssignDivide(LabeledExprParser.AssignDivideContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code whileLoop}
+	 * labeled alternative in {@link LabeledExprParser#stat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileLoop(LabeledExprParser.WhileLoopContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code Blank}
 	 * labeled alternative in {@link LabeledExprParser#stat}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitBlank(LabeledExprParser.BlankContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code while}
+	 * labeled alternative in {@link LabeledExprParser#loop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhile(LabeledExprParser.WhileContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Add}
 	 * labeled alternative in {@link LabeledExprParser#expr}.

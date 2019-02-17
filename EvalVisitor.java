@@ -337,6 +337,24 @@ public class EvalVisitor extends LabeledExprBaseVisitor<Double> {
         Double value = this.visit(ctx.expr());
         return Math.exp(value);
     }
+    /**while */
+    @Override
+    public Double visitWhile(LabeledExprParser.WhileContext ctx) {
+
+    // Evaluate the relational expression and continue the while
+    // loop as long as it is true (does not equal zero).
+    while (this.visit(ctx.expr()) != 0) {
+
+        // Evaluate all statements inside the while loop.
+        for (LabeledExprParser.StatContext stat : ctx.stat()) {
+            this.visit(stat);
+        }
+    }
+
+    // 0 now also is false, so maybe return null instead which would be
+    // some sort of VOID value (or make a proper Value class).
+    return 0.0;
+}
 
     /** '(' expr ')' */
     @Override
