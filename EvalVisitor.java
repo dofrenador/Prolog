@@ -1,9 +1,11 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.*;
 
 public class EvalVisitor extends LabeledExprBaseVisitor<Double> {
     /** "memory" for our calculator; variable/value pairs go here */
     Map<String, Double> memory = new HashMap<String, Double>();
+    double a;
 
     /** ID '=' expr NEWLINE */
     @Override
@@ -36,7 +38,7 @@ public class EvalVisitor extends LabeledExprBaseVisitor<Double> {
          return value;
      }
 
-      /** ID '-=' expr NEWLINE */
+      /** ID '*=' expr NEWLINE */
       @Override
       public Double visitAssignMultiply(LabeledExprParser.AssignMultiplyContext ctx) {
           String id = ctx.ID().getText();  // id is left-hand side of '='
@@ -46,7 +48,8 @@ public class EvalVisitor extends LabeledExprBaseVisitor<Double> {
           //System.out.println(value);   
           return value;
       }
-
+        
+      /** ID '/=' expr NEWLINE */
       @Override
       public Double visitAssignDivide(LabeledExprParser.AssignDivideContext ctx) {
           String id = ctx.ID().getText();  // id is left-hand side of '='
@@ -57,8 +60,6 @@ public class EvalVisitor extends LabeledExprBaseVisitor<Double> {
           return value;
       }
      
-    
-
     /** expr NEWLINE */
     @Override
     public Double visitPrintExpr(LabeledExprParser.PrintExprContext ctx) {
@@ -101,13 +102,14 @@ public class EvalVisitor extends LabeledExprBaseVisitor<Double> {
         return 0.0;
     }
 
-    /** expr op=('*'|'/') expr */
+    /**Multiply */
     @Override
     public Double visitMul(LabeledExprParser.MulContext ctx) {
         Double left = visit(ctx.expr(0));  // get value of left subexpression
         Double right = visit(ctx.expr(1)); // get value of right subexpression
         return left * right;
     }
+    /**Divide*/
     @Override
     public Double visitDiv(LabeledExprParser.DivContext ctx) {
         Double left = visit(ctx.expr(0));  // get value of left subexpression
@@ -147,26 +149,27 @@ public class EvalVisitor extends LabeledExprBaseVisitor<Double> {
      }
 
 
-    /** expr op=('+'|'-') expr */
+    /** Substraction*/
     @Override
     public Double visitSub(LabeledExprParser.SubContext ctx) {
         Double left = visit(ctx.expr(0));  // get value of left subexpression
         Double right = visit(ctx.expr(1)); // get value of right subexpression
         return left - right; // must be SUB
     }
+    /**Addition */
     @Override
     public Double visitAdd(LabeledExprParser.AddContext ctx) {
         Double left = visit(ctx.expr(0));  // get value of left subexpression
         Double right = visit(ctx.expr(1)); // get value of right subexpression
         return left + right; // must be SUB
     }
-    @Override/** expr op= '%' expr */
+    @Override/** Modulo*/
     public Double visitModulo(LabeledExprParser.ModuloContext ctx){
         Double left = visit(ctx.expr(0));  // get value of left subexpression
         Double right = visit(ctx.expr(1)); // get value of right subexpression
         return left % right;
     }
-    /** increment */
+    /** increment right*/
     @Override
     public Double visitIncrementRight(LabeledExprParser.IncrementRightContext ctx){
         String id = ctx.ID().getText();
@@ -178,6 +181,7 @@ public class EvalVisitor extends LabeledExprBaseVisitor<Double> {
         }
         return memory.get(id);
     }
+    /** increment left*/
     @Override
     public Double visitIncrementLeft(LabeledExprParser.IncrementLeftContext ctx){
         String id = ctx.ID().getText();
@@ -189,6 +193,7 @@ public class EvalVisitor extends LabeledExprBaseVisitor<Double> {
         }
         return memory.get(id);
     }
+    /** decrement left*/
     @Override
     public Double visitDecrementLeft(LabeledExprParser.DecrementLeftContext ctx){
         String id = ctx.ID().getText();
@@ -200,6 +205,7 @@ public class EvalVisitor extends LabeledExprBaseVisitor<Double> {
         }
         return memory.get(id);
     }
+    /** decrement right*/
     @Override
     public Double visitDecrementRight(LabeledExprParser.DecrementRightContext ctx){
         String id = ctx.ID().getText();
@@ -210,6 +216,87 @@ public class EvalVisitor extends LabeledExprBaseVisitor<Double> {
             memory.put(id, -1.0);
         }
         return memory.get(id);
+    }
+
+    /**Greater*/
+    @Override
+    public Double visitGreater(LabeledExprParser.GreaterContext ctx){
+        
+        Double left = visit(ctx.expr(0));
+        Double right = visit(ctx.expr(1));
+        if(left > right)
+        return 1.0;
+        else
+        return 0.0;
+    }
+
+     /**GreaterEqual*/
+     @Override
+     public Double visitGreaterEqual(LabeledExprParser.GreaterEqualContext ctx){
+         
+         Double left = visit(ctx.expr(0));
+         Double right = visit(ctx.expr(1));
+         if(left >= right)
+         return 1.0;
+         else
+         return 0.0;
+     }
+      /**LesserEqual*/
+      @Override
+      public Double visitLesserEqual(LabeledExprParser.LesserEqualContext ctx){
+          
+          Double left = visit(ctx.expr(0));
+          Double right = visit(ctx.expr(1));
+          if(left <= right)
+          return 1.0;
+          else
+          return 0.0;
+      }
+
+     /**Lesser*/
+     @Override
+     public Double visitLesser(LabeledExprParser.LesserContext ctx){
+         
+         Double left = visit(ctx.expr(0));
+         Double right = visit(ctx.expr(1));
+         if(left < right)
+         return 1.0;
+         else
+         return 0.0;
+     }
+
+      /**comparison*/
+      @Override
+      public Double visitComparison(LabeledExprParser.ComparisonContext ctx){ 
+          Double left = visit(ctx.expr(0));
+          Double right = visit(ctx.expr(1));
+          if(Double.compare(left,right) == 0)
+          return 1.0;
+          else
+          return 0.0;
+      }
+
+       /**notequal*/
+     @Override
+     public Double visitNotEqual(LabeledExprParser.NotEqualContext ctx){
+         
+         Double left = visit(ctx.expr(0));
+         Double right = visit(ctx.expr(1));
+         if(Double.compare(left,right) == 0)
+         return 0.0;
+         else
+         return 1.0;
+     }
+
+     @Override
+     public Double visitRead(LabeledExprParser.ReadContext ctx){
+        String id = ctx.ID().getText();    
+        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        System.out.println("Enter a number: ");
+        a = reader.nextDouble();
+        System.out.println("You entered: " + a);
+        memory.put(id,a);
+        return a;
     }
 
     /** sin */

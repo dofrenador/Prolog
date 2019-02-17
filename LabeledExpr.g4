@@ -3,8 +3,6 @@ grammar LabeledExpr; // rename to distinguish from Expr.g4
 prog:   stat+ ;
 
 
-
-
 stat:   expr NEWLINE                # PrintExpr
     |   ID '=' expr NEWLINE         # Assign
     |   ID '+=' expr NEWLINE        # AssignPlus
@@ -28,6 +26,12 @@ expr:   expr op='^'  expr          # Pow
     |        op='!'  expr          # Not  
     |   expr op='&&' expr          # AndAnd
     |   expr op='||' expr          # OrOr
+    |   expr op='>'  expr          # Greater
+    |   expr op='<'  expr          # Lesser
+    |   expr op='>=' expr          # GreaterEqual
+    |   expr op='<=' expr          # LesserEqual
+    |   expr op='==' expr          # Comparison
+    |   expr op='!=' expr          # NotEqual 
     |   SIN  expr ')'              # Sin
     |   COS  expr ')'              # Cos
     |   LN   expr ')'              # Ln
@@ -66,6 +70,12 @@ ELSE : 'else';
 WHILE : 'while';
 TRUE : 'true';
 FALSE : 'false';
+GREATER : '>';
+LESSER : '<';
+GREATEREQ : '>=';
+LESSEREQ : '<=' ;
+COMPARE : '==';
+NOTEQUAL : '!=';
 ID  :   [a-zA-Z]+ ;      // match identifiers
 INT :   [0-9]+ ;         // match integers
 DOUBLE: '-'?[0-9]+('.'[0-9]+)?; //match doubles

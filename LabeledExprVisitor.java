@@ -65,19 +65,96 @@ public interface LabeledExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBlank(LabeledExprParser.BlankContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code DecrementLeft}
-	 * labeled alternative in {@link LabeledExprParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDecrementLeft(LabeledExprParser.DecrementLeftContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code Add}
 	 * labeled alternative in {@link LabeledExprParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAdd(LabeledExprParser.AddContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DecrementRight}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDecrementRight(LabeledExprParser.DecrementRightContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Parens}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParens(LabeledExprParser.ParensContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AndAnd}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAndAnd(LabeledExprParser.AndAndContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LesserEqual}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLesserEqual(LabeledExprParser.LesserEqualContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Int}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInt(LabeledExprParser.IntContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code IncrementRight}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIncrementRight(LabeledExprParser.IncrementRightContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Read}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRead(LabeledExprParser.ReadContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GreaterEqual}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGreaterEqual(LabeledExprParser.GreaterEqualContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Lesser}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLesser(LabeledExprParser.LesserContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Comparison}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComparison(LabeledExprParser.ComparisonContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code id}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitId(LabeledExprParser.IdContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DecrementLeft}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDecrementLeft(LabeledExprParser.DecrementLeftContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Sub}
 	 * labeled alternative in {@link LabeledExprParser#expr}.
@@ -100,12 +177,12 @@ public interface LabeledExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOrOr(LabeledExprParser.OrOrContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code DecrementRight}
+	 * Visit a parse tree produced by the {@code NotEqual}
 	 * labeled alternative in {@link LabeledExprParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDecrementRight(LabeledExprParser.DecrementRightContext ctx);
+	T visitNotEqual(LabeledExprParser.NotEqualContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Mul}
 	 * labeled alternative in {@link LabeledExprParser#expr}.
@@ -121,13 +198,6 @@ public interface LabeledExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCos(LabeledExprParser.CosContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Parens}
-	 * labeled alternative in {@link LabeledExprParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParens(LabeledExprParser.ParensContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code Modulo}
 	 * labeled alternative in {@link LabeledExprParser#expr}.
 	 * @param ctx the parse tree
@@ -142,40 +212,12 @@ public interface LabeledExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSqrt(LabeledExprParser.SqrtContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code AndAnd}
-	 * labeled alternative in {@link LabeledExprParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAndAnd(LabeledExprParser.AndAndContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code Double}
 	 * labeled alternative in {@link LabeledExprParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitDouble(LabeledExprParser.DoubleContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Int}
-	 * labeled alternative in {@link LabeledExprParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitInt(LabeledExprParser.IntContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code IncrementRight}
-	 * labeled alternative in {@link LabeledExprParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIncrementRight(LabeledExprParser.IncrementRightContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Read}
-	 * labeled alternative in {@link LabeledExprParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRead(LabeledExprParser.ReadContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Div}
 	 * labeled alternative in {@link LabeledExprParser#expr}.
@@ -205,19 +247,19 @@ public interface LabeledExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPow(LabeledExprParser.PowContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code Greater}
+	 * labeled alternative in {@link LabeledExprParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGreater(LabeledExprParser.GreaterContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code Negate}
 	 * labeled alternative in {@link LabeledExprParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitNegate(LabeledExprParser.NegateContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code id}
-	 * labeled alternative in {@link LabeledExprParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitId(LabeledExprParser.IdContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Exp}
 	 * labeled alternative in {@link LabeledExprParser#expr}.
