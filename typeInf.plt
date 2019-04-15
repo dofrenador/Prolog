@@ -19,7 +19,7 @@ test(typeExp_fMult) :- typeExp(fMult(float,float), float).
 
 
 
-% this test should fail
+% these test should fail
 test(typeExp_iplus_F, [fail]) :- typeExp(iplus(int, int), float).
 test(typeExp_iplus_T, [true(T == int)]) :- typeExp(iplus(int, int), T).
 
