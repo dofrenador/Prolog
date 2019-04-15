@@ -35,6 +35,12 @@ test(typeStatement_gvar, [nondet, true(T == int)]) :- % should succeed with T=in
     assertion(X == int), assertion( Y == int), % make sure the types are int
     gvar(v, int). % make sure the global variable is defined
 
+test(typeStatement_gvar1, [nondet, true(T == float)]) :- %should succed with T= float
+    deleteGVars(),
+    typeStatement(gvLet(v, T, fplus(X, Y)), unit),   
+    assertion(X == float), assertion( Y == float), % make sure the types are flaot
+    gvar(v, float). % make sure the global variable is defined    
+
 % same test as above but with infer 
 test(infer_gvar, [nondet]) :-
     infer([gvLet(v, T, iplus(X, Y))], unit),

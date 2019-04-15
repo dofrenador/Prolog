@@ -24,6 +24,9 @@ typeExpList([Hin|Tin], [Hout|Tout]):-
 /* global variable definition
     Example:
         gvLet(v, T, int) ~ let v = 3;
+        gvLet(v, T, flaot) ~ let v = 3.1; this is done
+        gvLet(v, T, bool) ~ let v = true;
+        gvLet(v, T, string) ~ let v = "hello";
  */
 typeStatement(gvLet(Name, T, Code), unit):-
     atom(Name), /* make sure we have a bound name */
