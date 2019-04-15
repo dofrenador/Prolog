@@ -94,7 +94,8 @@ fType(identity, [T,T]).
 
 fType(isub, [int,int,int]).
 fType(fsub, [float,float,float]).
-fType(iMult, [int,int,int])
+fType(iMult, [int,int,int]).
+fType(fMult, [float,float,float]).
 
 /* Find function signature
    A function is either buld in using fType or

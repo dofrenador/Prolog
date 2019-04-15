@@ -9,8 +9,14 @@
 */
 
 % tests for typeExp
-test(typeExp_iplus) :- 
-    typeExp(iplus(int,int), int).
+test(typeExp_iplus) :- typeExp(iplus(int,int), int).
+
+test(typeExp_fplus) :- typeExp(fplus(float,float), float).
+test(typeExp_isub) :- typeExp(isub(int,int), int).
+test(typeExp_fsub) :- typeExp(fsub(float,float), float).
+test(typeExp_iMult) :- typeExp(iMult(int,int), int).
+test(typeExp_fMult) :- typeExp(fMult(float,float), float).
+
 
 % this test should fail
 test(typeExp_iplus_F, [fail]) :-
