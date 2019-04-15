@@ -48,6 +48,8 @@ infer(Code, T) :-
 /* Basic types
     TODO: add more types if needed
  */
+bType(boolean).
+bType(char).
 bType(int).
 bType(float).
 bType(string).
