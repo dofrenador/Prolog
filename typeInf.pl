@@ -34,6 +34,40 @@ typeStatement(gvLet(Name, T, Code), unit):-
     bType(T), /* make sure we have an infered type */
     asserta(gvar(Name, T)). /* add definition to database */
 
+% typeStatements for all data types
+typeStatement(gvLet(Name, int, Code), int):-
+    atom(Name),
+    typeExp(Code, int), 
+    bType(int), 
+    asserta(gVar(Name, int)).
+
+
+% Need to add tests for these
+typeStatement(gvLet(Name, float, Code), float):-
+    atom(Name),
+    typeExp(Code, float), 
+    bType(float), 
+    asserta(gVar(Name, float)).
+
+typeStatement(gvLet(Name, string, Code), string):-
+    atom(Name),
+    typeExp(Code, string), 
+    bType(string), 
+    asserta(gVar(Name, string)).
+
+typeStatement(gvLet(Name, boolean, Code), boolean):-
+    atom(Name),
+    typeExp(Code, boolean), 
+    bType(boolean), 
+    asserta(gVar(Name, boolean)).
+
+typeStatement(gvLet(Name, char, Code), char):-
+    atom(Name),
+    typeExp(Code, char), 
+    bType(char), 
+    asserta(gVar(Name, char)).
+
+
 /* Code is simply a list of statements. The type is 
     the type of the last statement 
 */
