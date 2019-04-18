@@ -61,6 +61,9 @@ test(typeStatement_for, [nondet, true(T == unit)]) :-
     assertion(T == unit).
 
 
+test(infer_test1, [nondet]) :-
+    % a list could be [bType(int), bType(float), bType(int), bType(string), bType(int) ] and will have type list
+
 % same test as above but with infer 
 test(infer_gvar, [nondet]) :-
     infer([gvLet(v, T, iplus(X, Y))], unit),

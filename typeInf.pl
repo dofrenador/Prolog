@@ -80,7 +80,6 @@ typeStatement(for(Start, Stop, Code), T):-
     bType(unit).
 
 
-
 /* Code is simply a list of statements. The type is 
     the type of the last statement 
 */
