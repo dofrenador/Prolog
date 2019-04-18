@@ -68,7 +68,9 @@ typeStatement(gvLet(Name, char, Code), char):-
     asserta(gVar(Name, char)).
 
 typeStatement(if(Cond, Tcode, Fcode), T ):-
-    % add code here 
+    bType(boolean), 
+    typeExp(Tcode, T), 
+    typeExp(Fcode, T).
 
 
 /* Code is simply a list of statements. The type is 
