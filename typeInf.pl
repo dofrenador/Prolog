@@ -68,9 +68,17 @@ typeStatement(gvLet(Name, char, Code), char):-
     asserta(gVar(Name, char)).
 
 typeStatement(if(Cond, Tcode, Fcode), T ):-
+    typeExp(Cond, boolean),
     bType(boolean), 
     typeExp(Tcode, T), 
     typeExp(Fcode, T).
+
+typeStatement(for(Start, Stop, Code), T):-
+    typeExp(Start, int), 
+    typeExp(Stop, int), 
+    typeExp(T, unit), 
+    bType(unit).
+
 
 
 /* Code is simply a list of statements. The type is 
@@ -129,6 +137,7 @@ deleteGVars():-retractall(gvar), asserta(gvar(_X,_Y):-false()).
     TODO: add more functions
 */
 
+fType(string_append, [string,string,string]).
 fType(iplus, [int,int,int]).
 fType(fplus, [float, float, float]).
 fType(fToInt, [float,int]).
