@@ -61,14 +61,23 @@ test(typeStatement_for, [nondet, true(T == unit)]) :-
     assertion(T == unit).
 
 
-test(infer_test1, [nondet]) :-
-    % a list could be [bType(int), bType(float), bType(int), bType(string), bType(int) ] and will have type list
+% test(infer_test1, [nondet]) :-
+%     % a list could be [bType(int), bType(float), bType(int), bType(string), bType(int) ] and will have type list
+%     infer([bType(int), bType(float), bType(int), bType(string), bType(int) ], unit),
+%     assertion()
+
 
 % same test as above but with infer 
 test(infer_gvar, [nondet]) :-
     infer([gvLet(v, T, iplus(X, Y))], unit),
     assertion(T==int), assertion(X==int), assertion(Y=int),
     gvar(v,int).
+
+
+test(infer_gvar1, [nondet]) :-
+    infer([gvLet(v, T, fsub(X, Y))], unit),
+    assertion(T==float), assertion(X==float), assertion(Y=float),
+    gvar(v,float).
 
 % test custom function with mocked definition
 test(mockedFct, [nondet]) :-
